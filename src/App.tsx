@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GoogleLogin, { GoogleResponse } from "./GoogleLogin";
+import "./App.css";
 
 function App() {
+  const responseGoogle = (resp: GoogleResponse) => {
+    console.log(resp);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GoogleLogin
+        socialId="1013950109638-vifmb8a487e1sav7vuh41p3vs5eec9od.apps.googleusercontent.com"
+        className="google-login"
+        scope="profile email https://www.googleapis.com/auth/admin.directory.user.readonly"
+        prompt="select_account"
+        fetchBasicProfile={true}
+        responseHandler={responseGoogle}
+        buttonText="Login With Google"
+      />
     </div>
   );
 }
